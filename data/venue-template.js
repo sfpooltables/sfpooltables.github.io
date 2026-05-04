@@ -11,6 +11,20 @@ const VENUE_TEMPLATE = {
       table_size: "7 ft",
       make: "Valley",
       cloth_color: "Green",
+      images: [
+        {
+          src: "./images/example-table-current.jpg",
+          alt: "Pool table at Venue Name",
+          caption: "Current condition.",
+          taken: "2026-05-04",
+        },
+        {
+          src: "./images/example-table-older.jpg",
+          alt: "Older photo of pool table at Venue Name",
+          caption: "Older condition.",
+          taken: "2026-01-15",
+        },
+      ],
       review: {
         cost: {
           score: 2,

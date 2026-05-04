@@ -29,6 +29,7 @@ const REVIEW_CATEGORIES = [
 let venues = [];
 let selectedVenueId = null;
 const markersById = new Map();
+let totalTableCount = 0;
 
 if (window.location.protocol === "file:") {
   previewWarning.hidden = false;
@@ -81,7 +82,7 @@ function computeVenueRating(tables) {
 }
 
 function normalizeVenues(items) {
-  return items.map((venue) => {
+  const normalizedVenues = items.map((venue) => {
     const tables = (venue.tables || []).map((table, index) => ({
       ...table,
       id: table.id || `${venue.id}-table-${index + 1}`,
@@ -95,6 +96,17 @@ function normalizeVenues(items) {
       rating: computeVenueRating(tables),
     };
   });
+
+  const rankedTables = normalizedVenues
+    .flatMap((venue) => venue.tables)
+    .sort((a, b) => b.rating - a.rating);
+
+  totalTableCount = rankedTables.length;
+  rankedTables.forEach((table, index) => {
+    table.rank = index + 1;
+  });
+
+  return normalizedVenues;
 }
 
 function reviewBlockHtml(item, label) {
@@ -106,7 +118,18 @@ function reviewBlockHtml(item, label) {
     <div class="detail-block">
       <span class="detail-label">${label}</span>
       <strong>${item.label} (${item.score}/5)</strong>
+      ${scoreMeterHtml(item.score)}
       ${comment}
+    </div>
+  `;
+}
+
+function scoreMeterHtml(score) {
+  const percent = Math.max(0, Math.min(100, (score / 5) * 100));
+
+  return `
+    <div class="score-meter" aria-label="${score.toFixed(1)} out of 5">
+      <span style="width: ${percent}%; background: ${markerColor(score)}"></span>
     </div>
   `;
 }
@@ -164,19 +187,78 @@ function popupHtml(venue) {
   `;
 }
 
-function tableDetailsHtml(table) {
+function photoCaptionHtml(image) {
+  const parts = [];
+  const taken = image.taken || photoDateFromPath(image.src);
+
+  if (image.caption) {
+    parts.push(image.caption);
+  }
+
+  if (taken) {
+    parts.push(`Photo taken: ${taken}`);
+  }
+
+  return parts.length > 0 ? `<figcaption>${parts.join(" ")}</figcaption>` : "";
+}
+
+function photoDateFromPath(src) {
+  const match = src.match(/(\d{4}-\d{2}-\d{2})(?=\.[a-z0-9]+$)/i);
+  return match ? match[1] : "";
+}
+
+function tablePhotosHtml(table) {
+  const images = table.images || (table.image ? [table.image] : []);
+
+  if (images.length === 0) {
+    return "";
+  }
+
+  const slides = images
+    .map(
+      (image, index) => `
+        <figure class="table-photo-slide ${index === 0 ? "active" : ""}" data-slide-index="${index}">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+          ${photoCaptionHtml(image)}
+        </figure>
+      `
+    )
+    .join("");
+  const controls =
+    images.length > 1
+      ? `
+        <div class="carousel-controls" aria-label="Photo controls">
+          <button class="carousel-button" type="button" data-carousel-direction="prev">Previous</button>
+          <span class="carousel-count">1 / ${images.length}</span>
+          <button class="carousel-button" type="button" data-carousel-direction="next">Next</button>
+        </div>
+      `
+      : "";
+
+  return `
+    <div class="table-photo-carousel" data-carousel>
+      ${slides}
+      ${controls}
+    </div>
+  `;
+}
+
+function tableDetailsHtml(table, showTableName) {
   const reviewBlocks = REVIEW_CATEGORIES.map(({ key, label }) =>
     reviewBlockHtml(table.review[key], label)
   ).join("");
   const pocketsBlock = infoBlockHtml(table.pockets, "Pockets");
+  const tableNameHtml = showTableName ? `<h4>${table.name}</h4>` : "";
+  const imageHtml = tablePhotosHtml(table);
 
   return `
     <article class="table-card">
-      <h4>${table.name}</h4>
+      ${tableNameHtml}
       <div class="details-grid">
         <div class="detail-block">
           <span class="detail-label">Table Rating</span>
-          <strong>${table.rating.toFixed(1)} / 5</strong>
+          <strong>${table.rating.toFixed(1)} / 5 (#${table.rank} / ${totalTableCount} tables)</strong>
+          ${scoreMeterHtml(table.rating)}
         </div>
         <div class="detail-block">
           <span class="detail-label">Table Size</span>
@@ -190,6 +272,7 @@ function tableDetailsHtml(table) {
           <span class="detail-label">Cloth Color</span>
           <strong>${table.cloth_color}</strong>
         </div>
+        ${pocketsBlock}
       </div>
       <div class="review-section">
         <span class="detail-label">Score Breakdown</span>
@@ -197,28 +280,22 @@ function tableDetailsHtml(table) {
           ${reviewBlocks}
         </div>
       </div>
-      <div class="review-section">
-        <span class="detail-label">Other Notes</span>
-        <div class="details-grid">
-          ${pocketsBlock}
-        </div>
-      </div>
+      ${imageHtml}
     </article>
   `;
 }
 
 function detailsHtml(venue) {
-  const tableCards = venue.tables.map((table) => tableDetailsHtml(table)).join("");
+  const showTableNames = venue.tables.length > 1;
+  const tableCards = venue.tables
+    .map((table) => tableDetailsHtml(table, showTableNames))
+    .join("");
 
   return `
     <article class="details-card">
       <h3>${venue.name}</h3>
       <p class="details-address">${venue.address}</p>
       <div class="details-grid">
-        <div class="detail-block">
-          <span class="detail-label">Venue Rating</span>
-          <strong>${venue.rating.toFixed(1)} / 5</strong>
-        </div>
         <div class="detail-block">
           <span class="detail-label">Neighborhood</span>
           <strong>${venue.neighborhood}</strong>
@@ -263,6 +340,35 @@ function renderDetails() {
 
   details.className = "";
   details.innerHTML = detailsHtml(venue);
+  bindCarousels();
+}
+
+function bindCarousels() {
+  details.querySelectorAll("[data-carousel]").forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll(".table-photo-slide"));
+    const count = carousel.querySelector(".carousel-count");
+
+    if (slides.length < 2) {
+      return;
+    }
+
+    let activeIndex = 0;
+
+    function showSlide(nextIndex) {
+      activeIndex = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === activeIndex);
+      });
+      count.textContent = `${activeIndex + 1} / ${slides.length}`;
+    }
+
+    carousel.querySelectorAll("[data-carousel-direction]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = button.dataset.carouselDirection;
+        showSlide(activeIndex + (direction === "next" ? 1 : -1));
+      });
+    });
+  });
 }
 
 function selectVenue(venueId, openPopup = true) {

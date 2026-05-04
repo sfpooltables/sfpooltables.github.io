@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>SF Pool Tables</title>
+    <title>San Francisco pool table ratings</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -16,9 +16,9 @@
   <body>
     <header class="site-header">
       <div>
-        <h1>SF Pool Tables</h1>
+        <h1>San Francisco pool table ratings</h1>
         <p class="tagline">
-          Reviews of pool tables in San Francisco bars. Click a venue on the map
+          Reviews of public pool tables in San Francisco, CA. Click a venue on the map
           or in the list for details.
         </p>
         <p id="preview-warning" class="preview-warning" hidden></p>
@@ -29,10 +29,11 @@
       <section class="panel map-panel">
         <div class="panel-heading">
           <h2>Map</h2>
-          <p>Zoom in, click markers, and compare locations geographically.</p>
+          <!-- <p>Zoom in, click markers, and compare locations geographically.</p> -->
         </div>
         <div id="map" aria-label="Map of San Francisco pool table venues"></div>
       </section>
+
 
       <aside class="panel list-panel">
         <div class="panel-heading">
@@ -52,7 +53,7 @@
       <section class="panel details-panel">
         <div class="panel-heading">
           <h2>Venue Details</h2>
-          <p>Table specs, playability notes, and overall rating.</p>
+          <p>Table specs, playability notes, and overall rating</p>
         </div>
         <div id="details" class="details-empty">
           Select a venue to inspect its pool table review.
