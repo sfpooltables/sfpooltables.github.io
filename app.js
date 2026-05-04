@@ -16,14 +16,13 @@ const details = document.getElementById("details");
 const previewWarning = document.getElementById("preview-warning");
 const REVIEW_CATEGORIES = [
   { key: "cost", label: "Cost", maxScore: 5 },
-  { key: "table_condition", label: "Table Condition", maxScore: 5 },
   { key: "cloth_condition", label: "Cloth Condition", maxScore: 5 },
   { key: "rails", label: "Rail Condition", maxScore: 5 },
-  { key: "lighting", label: "Lighting", maxScore: 5 },
+  { key: "rolloff", label: "Rolloff", maxScore: 5 },
   { key: "ball_condition", label: "Ball Condition", maxScore: 5 },
   { key: "cue_ball", label: "Cue Ball", maxScore: 5 },
+  { key: "lighting", label: "Lighting", maxScore: 5 },
   { key: "obstructions", label: "Obstructions", maxScore: 5 },
-  { key: "rolloff", label: "Rolloff", maxScore: 5 },
 ];
 
 let venues = [];
@@ -332,6 +331,14 @@ function detailsHtml(venue) {
   const tableCards = venue.tables
     .map((table) => tableDetailsHtml(table, showTableNames))
     .join("");
+  const notesHtml = venue.notes
+    ? `
+      <div class="notes">
+        <span class="detail-label">Venue Notes</span>
+        <p>${venue.notes}</p>
+      </div>
+    `
+    : "";
 
   return `
     <article class="details-card">
@@ -353,10 +360,7 @@ function detailsHtml(venue) {
           ${tableCards}
         </div>
       </div>
-      <div class="notes">
-        <span class="detail-label">Venue Notes</span>
-        <p>${venue.notes}</p>
-      </div>
+      ${notesHtml}
     </article>
   `;
 }
