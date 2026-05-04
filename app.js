@@ -77,8 +77,7 @@ function computeVenueRating(tables) {
     return 0;
   }
 
-  const total = tables.reduce((sum, table) => sum + table.rating, 0);
-  return total / tables.length;
+  return Math.max(...tables.map((table) => table.rating));
 }
 
 function normalizeVenues(items) {
@@ -103,7 +102,11 @@ function normalizeVenues(items) {
 
   totalTableCount = rankedTables.length;
   rankedTables.forEach((table, index) => {
-    table.rank = index + 1;
+    const previousTable = rankedTables[index - 1];
+    table.rank =
+      previousTable && previousTable.rating === table.rating
+        ? previousTable.rank
+        : index + 1;
   });
 
   return normalizedVenues;
