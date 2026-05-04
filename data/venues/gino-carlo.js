@@ -2,7 +2,7 @@ window.VENUES.push({
   id: "gino-carlo",
   name: "Gino & Carlo",
   address: "528 Green St, San Francisco, CA",
-  neighborhood: "Castro",
+  neighborhood: "North Beach",
   lat: 37.79972813077668,
   lng: -122.40815871499261,
   tables: [

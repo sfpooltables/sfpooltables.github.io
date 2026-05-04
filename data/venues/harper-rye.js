@@ -1,10 +1,10 @@
 window.VENUES.push({
-  id: "pilsner-inn",
-  name: "Pilsner Inn",
-  address: "225 Church St, San Francisco, CA",
-  neighborhood: "Castro",
-  lat: 37.76711018055059,
-  lng: -122.4287903914749,
+  id: "harper-rye",
+  name: "Harper & Rye",
+  address: "1695 Polk St, San Francisco, CA",
+  neighborhood: "Polk Gulch",
+  lat: 37.79226251806323,
+  lng: -122.42118592120941,
   tables: [
     {
       name: "Table 1",
@@ -13,15 +13,15 @@ window.VENUES.push({
       cloth_color: "Green",
       images: [
         {
-          src: "./images/pilsner-inn-2023-06-01.jpg",
-          alt: "Pool table at Pilsner Inn",
+          src: "./images/harper-rye-2016-06-01.jpg",
+          alt: "Pool table at Harper & Rye",
         },
       ],
       review: {
         cost: {
-          score: 3,
-          label: "Good",
-          comment: "$2 per game, $5 per 3 games",
+          score: 1,
+          label: "Poor",
+          comment: "$3 per game",
         },
         table_condition: {
           score: 4,
@@ -36,8 +36,8 @@ window.VENUES.push({
           label: "Very good",
         },
         lighting: {
-          score: 4,
-          label: "Very good",
+          score: 2,
+          label: "Fair",
         },
         ball_condition: {
           score: 3,
@@ -48,19 +48,19 @@ window.VENUES.push({
           label: "Standard",
         },
         obstructions: {
-          score: 4,
-          label: "Minor obstructions",
-          comment: "Shelf and pole in play on some shots near rail",
+          score: 1,
+          label: "Major obstructions",
+          comment: "Pole & railing",
         },
         rolloff: {
-          score: 5,
-          label: "No major rolloff",
+          score: 1,
+          label: "Substantial rolloff",
         },
       },
       pockets: {
-        label: "Normal",
+        label: "Typical",
       },
     },
   ],
-  notes: "League play Tuesday night",
+  notes: "Attractive table but expensive and plays terribly",
 });

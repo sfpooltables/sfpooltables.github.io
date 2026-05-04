@@ -1,20 +1,20 @@
 window.VENUES.push({
-  id: "lone-star",
-  name: "Lone Star Saloon",
-  address: "1354 Harrison St, San Francisco, CA",
-  neighborhood: "SoMa",
-  lat: 37.77212561592299,
-  lng: -122.4108550631019,
+  id: "sea-star",
+  name: "The Sea Star",
+  address: "2289 3rd St, San Francisco, CA",
+  neighborhood: "Dogpatch",
+  lat: 37.76074197035715,
+  lng: -122.38839851554926,
   tables: [
     {
       name: "Table 1",
       table_size: "7 ft",
       make: "Valley",
-      cloth_color: "Red",
+      cloth_color: "Black",
       images: [
         {
-          src: "./images/lone-star-2024-06-01.jpg",
-          alt: "Pool table at Lone Star Saloon",
+          src: "./images/sea-star-2025-05-01.jpg",
+          alt: "Pool table at the Sea Star",
         },
       ],
       review: {
@@ -28,12 +28,12 @@ window.VENUES.push({
           label: "Good",
         },
         cloth_condition: {
-          score: 3,
-          label: "Good",
+          score: 2,
+          label: "Fair",
         },
         rails: {
-          score: 3,
-          label: "Good",
+          score: 2,
+          label: "Fair",
         },
         lighting: {
           score: 2,
@@ -50,17 +50,17 @@ window.VENUES.push({
         obstructions: {
           score: 4,
           label: "Minor obstructions",
-          comment: "Shelf in play on some shots near rail",
+          comment: "Drink railing affects shots on back short rail",
         },
         rolloff: {
-          score: 4,
-          label: "Minor rolloff",
+          score: 3,
+          label: "Moderate rolloff",
         },
       },
       pockets: {
-        label: "Normal",
+        label: "Typical",
       },
     },
   ],
-  notes: "League play or open tournaments Tuesday night",
+  notes: "Bathrooms nearby and not much seating near table",
 });
