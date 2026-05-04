@@ -3,10 +3,10 @@ const MAP_ZOOM = 12;
 
 const map = L.map("map").setView(MAP_CENTER, MAP_ZOOM);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
+L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+  maxZoom: 20,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 }).addTo(map);
 
 const venueList = document.getElementById("venue-list");
@@ -30,6 +30,7 @@ let venues = [];
 let selectedVenueId = null;
 const markersById = new Map();
 let totalTableCount = 0;
+let mapRatingRange = { min: 0, max: 5 };
 
 if (window.location.protocol === "file:") {
   previewWarning.hidden = false;
@@ -108,6 +109,11 @@ function normalizeVenues(items) {
         ? previousTable.rank
         : index + 1;
   });
+  const venueRatings = normalizedVenues.map((venue) => venue.rating);
+  mapRatingRange = {
+    min: Math.min(...venueRatings),
+    max: Math.max(...venueRatings),
+  };
 
   return normalizedVenues;
 }
@@ -128,11 +134,12 @@ function reviewBlockHtml(item, label) {
 }
 
 function scoreMeterHtml(score) {
+  const normalized = Math.max(0, Math.min(1, (score - 1) / 4));
   const percent = Math.max(0, Math.min(100, (score / 5) * 100));
 
   return `
     <div class="score-meter" aria-label="${score.toFixed(1)} out of 5">
-      <span style="width: ${percent}%; background: ${markerColor(score)}"></span>
+      <span style="width: ${percent}%; background: ${gradientColor(normalized)}"></span>
     </div>
   `;
 }
@@ -156,23 +163,61 @@ function infoBlockHtml(item, label) {
 }
 
 function markerColor(rating) {
-  if (rating >= 4.5) {
-    return "#1f7a4d";
+  return gradientColor(Math.max(0, Math.min(1, rating / 5)));
+}
+
+function mapMarkerColor(rating) {
+  const min = mapRatingRange.min;
+  const max = mapRatingRange.max;
+  const midpoint = 3;
+
+  if (max === min) {
+    return gradientColor(1);
   }
 
-  if (rating >= 3.75) {
-    return "#5c8f2f";
+  if (rating <= midpoint) {
+    const lowerRange = midpoint - min;
+    const normalized = lowerRange === 0 ? 0.5 : (rating - min) / lowerRange / 2;
+    return gradientColor(Math.max(0, Math.min(0.5, normalized)));
   }
 
-  if (rating >= 3) {
-    return "#c3921a";
+  const upperRange = max - midpoint;
+  const normalized =
+    upperRange === 0 ? 0.5 : 0.5 + ((rating - midpoint) / upperRange) * 0.5;
+  return gradientColor(Math.max(0.5, Math.min(1, normalized)));
+}
+
+function gradientColor(normalized) {
+  const stops = [
+    { position: 0, color: [159, 47, 47] },
+    { position: 0.5, color: [195, 146, 26] },
+    { position: 1, color: [31, 122, 77] },
+  ];
+  const upperStop = stops.find((stop) => normalized <= stop.position);
+  const lowerStop =
+    stops[Math.max(0, stops.indexOf(upperStop) - 1)] || stops[0];
+
+  if (!upperStop) {
+    return rgbToHex(...stops[stops.length - 1].color);
   }
 
-  if (rating >= 2) {
-    return "#b85f24";
+  if (upperStop === lowerStop) {
+    return rgbToHex(...upperStop.color);
   }
 
-  return "#9f2f2f";
+  const range = upperStop.position - lowerStop.position;
+  const amount = (normalized - lowerStop.position) / range;
+  const color = lowerStop.color.map((channel, index) =>
+    Math.round(channel + (upperStop.color[index] - channel) * amount)
+  );
+
+  return rgbToHex(...color);
+}
+
+function rgbToHex(red, green, blue) {
+  return `#${[red, green, blue]
+    .map((channel) => channel.toString(16).padStart(2, "0"))
+    .join("")}`;
 }
 
 function popupHtml(venue) {
@@ -422,7 +467,7 @@ function addMarkers() {
   venues.forEach((venue) => {
     const marker = L.circleMarker([venue.lat, venue.lng], {
       radius: 9,
-      fillColor: markerColor(venue.rating),
+      fillColor: mapMarkerColor(venue.rating),
       color: "#fffdf8",
       weight: 2,
       opacity: 1,
