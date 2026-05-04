@@ -1,4 +1,4 @@
-const VENUE_TEMPLATE = {
+window.VENUES.push({
   id: "unique-venue-id",
   name: "Venue Name",
   address: "123 Example St, San Francisco, CA",
@@ -79,4 +79,4 @@ const VENUE_TEMPLATE = {
     },
   ],
   notes: "General venue notes.",
-};
+});

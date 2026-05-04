@@ -53,27 +53,31 @@
       <section class="panel details-panel">
         <div class="panel-heading">
           <h2>Venue Details</h2>
-          <p>Table specs, playability notes, and overall rating</p>
+          <!-- <p>Table specs, playability notes, and overall rating</p> -->
         </div>
         <div id="details" class="details-empty">
-          Select a venue to inspect its pool table review.
+          Select a venue on the map or the list to view information about its pool tables
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
       <p>
-        Starter site for GitHub Pages. Replace the sample data in
-        <code>data/bars.js</code> with real venue reviews.
+        Starter site for GitHub Pages. Add venue files in
+        <code>data/venues/</code> and load them in <code>index.html</code>.
       </p>
     </footer>
+    -->
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./data/bars.js"></script>
+    <script src="./data/venues.js"></script>
+    <script src="./data/venues/connecticut-yankee.js"></script>
+    <script src="./data/venues/happy-lounge.js"></script>
+    <script src="./data/venues/pilsner-inn.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

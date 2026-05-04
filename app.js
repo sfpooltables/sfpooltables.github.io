@@ -173,17 +173,11 @@ function markerColor(rating) {
 }
 
 function popupHtml(venue) {
-  const topTable = [...venue.tables].sort((a, b) => b.rating - a.rating)[0];
-  const topTableLine = topTable
-    ? `<p><strong>Top table:</strong> ${topTable.name} (${topTable.rating.toFixed(1)}/5)</p>`
-    : "";
-
   return `
     <h3>${venue.name}</h3>
     <p>${venue.address}</p>
     <p><strong>Rating:</strong> ${venue.rating.toFixed(1)}/5</p>
     <p><strong>Tables:</strong> ${formatTableCount(venue.tables.length)}</p>
-    ${topTableLine}
   `;
 }
 
@@ -257,7 +251,7 @@ function tableDetailsHtml(table, showTableName) {
       <div class="details-grid">
         <div class="detail-block">
           <span class="detail-label">Table Rating</span>
-          <strong>${table.rating.toFixed(1)} / 5 (#${table.rank} / ${totalTableCount} tables)</strong>
+          <strong>${table.rating.toFixed(1)}/5, #${table.rank}/${totalTableCount} tables</strong>
           ${scoreMeterHtml(table.rating)}
         </div>
         <div class="detail-block">
@@ -455,7 +449,7 @@ async function loadVenues() {
     venueCount.textContent = "Could not load venue data.";
     details.className = "details-empty";
     details.textContent =
-      "The site could not read venue data. Check data/bars.js and try again.";
+      "The site could not read venue data. Check data/venues.js and the files in data/venues/.";
     console.error(error);
   }
 }
