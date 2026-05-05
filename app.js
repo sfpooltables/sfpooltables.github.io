@@ -72,6 +72,10 @@ function formatTableCount(count) {
   return `${count} table${count === 1 ? "" : "s"}`;
 }
 
+function venueTableCount(venue) {
+  return venue.table_count || venue.tables.length;
+}
+
 function computeVenueRating(tables) {
   if (!Array.isArray(tables) || tables.length === 0) {
     return 0;
@@ -224,7 +228,7 @@ function popupHtml(venue) {
     <h3>${venue.name}</h3>
     <p>${venue.address}</p>
     <p><strong>Rating:</strong> ${venue.rating.toFixed(1)}/5</p>
-    <p><strong>Tables:</strong> ${formatTableCount(venue.tables.length)}</p>
+    <p><strong>Tables:</strong> ${formatTableCount(venueTableCount(venue))}</p>
   `;
 }
 
@@ -351,7 +355,7 @@ function detailsHtml(venue) {
         </div>
         <div class="detail-block">
           <span class="detail-label">Table Count</span>
-          <strong>${formatTableCount(venue.tables.length)}</strong>
+          <strong>${formatTableCount(venueTableCount(venue))}</strong>
         </div>
       </div>
       <div class="tables-section">
@@ -449,9 +453,9 @@ function renderList() {
           <button class="venue-item" data-venue-id="${venue.id}" type="button">
             <div class="venue-item-title">
               <strong>${venue.name}</strong>
-              <span class="rating-pill">${venue.rating.toFixed(1)}</span>
+              <span class="rating-pill" style="background: ${mapMarkerColor(venue.rating)}">${venue.rating.toFixed(1)}</span>
             </div>
-            <p>${venue.neighborhood} · ${formatTableCount(venue.tables.length)}</p>
+            <p>${venue.neighborhood} · ${formatTableCount(venueTableCount(venue))}</p>
           </button>
         </li>
       `

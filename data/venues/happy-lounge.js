@@ -20,8 +20,8 @@ window.VENUES.push({
       review: {
         cost: {
           score: 5,
-          label: "Excellent",
-          comment: "Free",
+          label: "Free",
+          // comment: "Free",
         },
         table_condition: {
           score: 5,

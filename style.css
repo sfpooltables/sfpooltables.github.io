@@ -168,11 +168,13 @@ select {
 }
 
 .rating-pill {
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid rgba(31, 31, 26, 0.18);
+  color: #fff;
   border-radius: 999px;
   padding: 0.1rem 0.5rem;
   font-size: 0.88rem;
+  min-width: 2.35rem;
+  text-align: center;
 }
 
 .venue-item p {
