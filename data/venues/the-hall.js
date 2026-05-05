@@ -10,7 +10,7 @@ window.VENUES.push({
     {
       name: "Table 1",
       table_size: "7 ft",
-      make: "Unknown",
+      make: "Diamond",
       cloth_color: "Gray",
       images: [
         {
@@ -21,7 +21,7 @@ window.VENUES.push({
       review: {
         cost: {
           score: 1,
-          label: "Very expensive",
+          label: "Very high",
           comment: "$15 per hour",
         },
         // table_condition: {

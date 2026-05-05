@@ -19,8 +19,8 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 2,
-          label: "Fair",
+          score: 2.5,
+          label: "Typical",
           comment: "$2 per game",
         },
         table_condition: {

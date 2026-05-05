@@ -9,7 +9,7 @@ window.VENUES.push({
     {
       name: "Table 1",
       table_size: "7 ft",
-      make: "Unknown",
+      make: "Valley",
       cloth_color: "Pink",
       images: [
         {
@@ -20,7 +20,7 @@ window.VENUES.push({
       review: {
         cost: {
           score: 4,
-          label: "Very good",
+          label: "Affordable",
           comment: "$1 per game",
         },
         // table_condition: {
