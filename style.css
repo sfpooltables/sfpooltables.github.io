@@ -43,9 +43,27 @@ select {
   padding: 1.25rem 1rem;
 }
 
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
 .site-header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 0.35rem;
+}
+
+.site-nav {
+  flex: 0 0 auto;
+  padding-top: 0.35rem;
+}
+
+.site-nav a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
 .tagline,
@@ -74,6 +92,61 @@ select {
     "map list"
     "details list";
   gap: 1rem;
+}
+
+.reference-layout {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.reference-panel {
+  overflow: visible;
+}
+
+.reference-content {
+  padding: 1rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.rating-key-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.rating-key-card {
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.rating-key-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.65rem;
+}
+
+.rating-key-card ol {
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0;
+}
+
+.rating-key-card li {
+  color: var(--muted);
+}
+
+.rating-key-card strong {
+  display: inline-block;
+  min-width: 1.3rem;
+  color: var(--text);
 }
 
 .panel {
@@ -339,6 +412,14 @@ select {
 }
 
 @media (max-width: 900px) {
+  .site-header {
+    flex-direction: column;
+  }
+
+  .site-nav {
+    padding-top: 0;
+  }
+
   .layout {
     grid-template-columns: 1fr;
     grid-template-areas:

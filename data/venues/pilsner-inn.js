@@ -19,8 +19,8 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 3,
-          label: "Good",
+          score: 4,
+          label: "Average",
           comment: "$2 per game, $5 per 3 games",
         },
         table_condition: {
@@ -41,11 +41,11 @@ window.VENUES.push({
         },
         ball_condition: {
           score: 3,
-          label: "Good",
+          label: "Average",
         },
         cue_ball: {
-          score: 5,
-          label: "Standard",
+          score: 4,
+          label: "Magnet",
         },
         obstructions: {
           score: 4,

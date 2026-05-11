@@ -1,27 +1,27 @@
 window.VENUES.push({
-  id: "st-marys",
-  name: "St. Mary's Pub",
-  address: "3845 Mission St, San Francisco, CA",
-  neighborhood: "Holly Park",
-  lat: 37.7354732391938,
-  lng: -122.42451846221746,
+  id: "kona's",
+  name: "Kona's",
+  address: "32 3rd St, San Francisco, CA",
+  neighborhood: "SoMa",
+  lat: 37.78702256166292,
+  lng: -122.40325976342962,
   tables: [
     {
       name: "Table 1",
       table_size: "7 ft",
       make: "Valley",
-      cloth_color: "Pink",
+      cloth_color: "Green",
       images: [
         {
-          src: "./images/st-marys-2024-12-01.jpg",
-          alt: "Pool table at Blackbird",
+          src: "./images/konas-2025-09-01.jpg",
+          alt: "Pool table at Kona's",
         },
       ],
       review: {
         cost: {
-          score: 5,
-          label: "Affordable",
-          comment: "$1 per game",
+          score: 3,
+          label: "Typical",
+          comment: "$2 per game, $5 per 3 games",
         },
         // table_condition: {
         //   score: 1,
@@ -29,12 +29,12 @@ window.VENUES.push({
         //   comment: "Unique furniture-style table, high slate"
         // },
         cloth_condition: {
-          score: 2,
-          label: "Fair",
+          score: 4,
+          label: "Very good",
         },
         rails: {
-          score: 1,
-          label: "Poor",
+          score: 4,
+          label: "Very good",
           // comment: "Inconsistent, some rails dead"
         },
         lighting: {
@@ -42,23 +42,23 @@ window.VENUES.push({
           label: "Fair",
         },
         ball_condition: {
-          score: 1,
-          label: "Poor",
+          score: 3,
+          label: "Good",
           // comment: "Dirty, cakey, and missing balls"
         },
         cue_ball: {
-          score: 1,
-          label: "Heavy, magnet ball not functional",
+          score: 3,
+          label: "Heavy, magnet ball functional",
         },
         obstructions: {
-          score: 2,
-          label: "Major obstructions",
-          comment: "Walls very close in on two sides",
+          score: 5,
+          label: "No obstructions",
+          // comment: "Walls very close in on two sides",
         },
         rolloff: {
-          score: 1,
-          label: "Major rolloff",
-          comment: "Table not at all level"
+          score: 5,
+          label: "No rolloff",
+          // comment: "Table not at all level"
         },
       },
       pockets: {

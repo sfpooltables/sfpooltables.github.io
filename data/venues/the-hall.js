@@ -20,8 +20,8 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 1,
-          label: "Very high",
+          score: 3,
+          label: "Expensive",
           comment: "$15 per hour",
         },
         // table_condition: {
@@ -31,7 +31,7 @@ window.VENUES.push({
         // },
         cloth_condition: {
           score: 5,
-          label: "Very good",
+          label: "Excellent",
         },
         rails: {
           score: 5,

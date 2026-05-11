@@ -19,8 +19,8 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 1,
-          label: "Poor",
+          score: 3,
+          label: "Expensive",
           comment: "$3 per game",
         },
         table_condition: {
@@ -32,8 +32,9 @@ window.VENUES.push({
           label: "Very good",
         },
         rails: {
-          score: 4,
-          label: "Very good",
+          score: 3,
+          label: "Average",
+          comment: "Somewhat inconsistent"
         },
         lighting: {
           score: 2,
@@ -44,8 +45,8 @@ window.VENUES.push({
           label: "Good",
         },
         cue_ball: {
-          score: 5,
-          label: "Standard",
+          score: 4,
+          label: "Magnet",
         },
         obstructions: {
           score: 1,

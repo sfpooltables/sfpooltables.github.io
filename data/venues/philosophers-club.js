@@ -19,8 +19,8 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 2.5,
-          label: "Typical",
+          score: 4,
+          label: "Average",
           comment: "$2 per game",
         },
         table_condition: {
@@ -47,8 +47,8 @@ window.VENUES.push({
           comment: "Dirty, cakey, and missing balls"
         },
         cue_ball: {
-          score: 2,
-          label: "Heavy",
+          score: 1,
+          label: "Heavy, magnet ball not functional",
         },
         obstructions: {
           score: 4,
