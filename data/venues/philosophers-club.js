@@ -56,7 +56,7 @@ window.VENUES.push({
           comment: "Tables nearby and foot traffic",
         },
         rolloff: {
-          score: 2,
+          score: 1,
           label: "Major rolloff",
         },
       },

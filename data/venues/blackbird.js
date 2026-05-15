@@ -56,7 +56,7 @@ window.VENUES.push({
         },
         rolloff: {
           score: 1,
-          label: "Substantial rolloff",
+          label: "Major rolloff",
         },
       },
       pockets: {

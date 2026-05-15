@@ -58,7 +58,7 @@ window.VENUES.push({
         },
         rolloff: {
           score: 5,
-          label: "No rolloff",
+          label: "Level table",
           // comment: "Table not at all level"
         },
       },

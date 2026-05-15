@@ -54,7 +54,7 @@ window.VENUES.push({
         },
         rolloff: {
           score: 5,
-          label: "No major rolloff",
+          label: "Level table",
         },
       },
       pockets: {
@@ -109,7 +109,7 @@ window.VENUES.push({
         },
         rolloff: {
           score: 5,
-          label: "No major rolloff",
+          label: "Level table",
         },
       },
       pockets: {

@@ -54,7 +54,7 @@ window.VENUES.push({
         },
         rolloff: {
           score: 3,
-          label: "Moderate rolloff",
+          label: "Occasional rolloff",
         },
       },
       pockets: {
