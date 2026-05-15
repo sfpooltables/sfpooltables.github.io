@@ -10,6 +10,7 @@ window.VENUES.push({
     {
       name: "Table 1",
       table_size: "7 ft",
+      rating_date: "May 2026",
       make: "Diamond",
       cloth_color: "Gray",
       images: [

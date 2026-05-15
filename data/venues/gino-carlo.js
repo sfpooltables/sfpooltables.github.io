@@ -9,6 +9,7 @@ window.VENUES.push({
     {
       name: "Back Table",
       table_size: "7 ft",
+      rating_date: "May 2026",
       make: "Diamond",
       cloth_color: "Blue",
       images: [
@@ -64,6 +65,7 @@ window.VENUES.push({
     {
       name: "Front Table",
       table_size: "7 ft",
+      rating_date: "May 2026",
       make: "Diamond",
       cloth_color: "Blue",
       // images: [

@@ -306,6 +306,10 @@ function tableDetailsHtml(table, showTableName) {
           ${scoreMeterHtml(table.rating)}
         </div>
         <div class="detail-block">
+          <span class="detail-label">Rating Date</span>
+          <strong>${table.rating_date}</strong>
+        </div>
+        <div class="detail-block">
           <span class="detail-label">Table Size</span>
           <strong>${table.table_size}</strong>
         </div>
