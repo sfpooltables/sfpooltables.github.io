@@ -19,13 +19,13 @@ window.VENUES.push({
       ],
       review: {
         cost: {
-          score: 3.5,
-          label: "Typical",
+          score: 4,
+          label: "Average",
           comment: "$1.50 per game",
         },
         table_condition: {
           score: 3,
-          label: "Good",
+          label: "Average",
         },
         cloth_condition: {
           score: 2,
@@ -33,19 +33,19 @@ window.VENUES.push({
         },
         rails: {
           score: 3,
-          label: "Good",
+          label: "Average",
         },
         lighting: {
           score: 3,
-          label: "Good",
+          label: "Average",
         },
         ball_condition: {
           score: 2,
           label: "Fair",
         },
         cue_ball: {
-          score: 2,
-          label: "Heavy",
+          score: 3,
+          label: "Heavy, magnet ball functional",
         },
         obstructions: {
           score: 5,

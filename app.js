@@ -472,24 +472,26 @@ function renderList() {
 }
 
 function addMarkers() {
-  venues.forEach((venue) => {
-    const marker = L.circleMarker([venue.lat, venue.lng], {
-      radius: 9,
-      fillColor: mapMarkerColor(venue.rating),
-      color: "#fffdf8",
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 0.9,
-    })
-      .addTo(map)
-      .bindPopup(popupHtml(venue));
+  [...venues]
+    .sort((a, b) => a.rating - b.rating)
+    .forEach((venue) => {
+      const marker = L.circleMarker([venue.lat, venue.lng], {
+        radius: 9,
+        fillColor: mapMarkerColor(venue.rating),
+        color: "#fffdf8",
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.9,
+      })
+        .addTo(map)
+        .bindPopup(popupHtml(venue));
 
-    marker.on("click", () => {
-      selectVenue(venue.id, false);
+      marker.on("click", () => {
+        selectVenue(venue.id, false);
+      });
+
+      markersById.set(venue.id, marker);
     });
-
-    markersById.set(venue.id, marker);
-  });
 }
 
 async function loadVenues() {

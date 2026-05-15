@@ -20,7 +20,7 @@ window.VENUES.push({
       review: {
         cost: {
           score: 4,
-          label: "Typical",
+          label: "Average",
           comment: "$2 per game, $5 per 3 games",
         },
         table_condition: {
@@ -39,7 +39,7 @@ window.VENUES.push({
         },
         lighting: {
           score: 3,
-          label: "Good",
+          label: "Average",
         },
         ball_condition: {
           score: 2,
