@@ -163,6 +163,12 @@ select {
 
 .list-panel {
   grid-area: list;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2rem);
+  position: sticky;
+  top: 1rem;
 }
 
 .details-panel {
@@ -209,6 +215,7 @@ select {
   list-style: none;
   padding: 0.75rem 0 0;
   margin: 0;
+  overflow-y: auto;
 }
 
 .venue-item {
@@ -424,8 +431,13 @@ select {
     grid-template-columns: 1fr;
     grid-template-areas:
       "map"
-      "details"
-      "list";
+      "list"
+      "details";
+  }
+
+  .list-panel {
+    max-height: none;
+    position: static;
   }
 
   .panel-heading {

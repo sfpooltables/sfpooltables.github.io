@@ -1,14 +1,14 @@
 window.VENUES.push({
-  id: "bus-stop",
-  name: "Bus Stop",
-  address: "1901 Union St, San Francisco, CA",
-  neighborhood: "Cow Hollow",
-  lat: 37.79759417765931,
-  lng: -122.43071488312248,
+  id: "cinch",
+  name: "The Cinch Saloon",
+  address: "1723 Polk St, San Francisco, CA",
+  neighborhood: "Polk Gulch",
+  lat: 37.79274702242951,
+  lng: -122.42131197791592,
   tables: [
     {
-      name: "Left table",
-      table_size: "8 ft",
+      name: "Front table",
+      table_size: "7 ft",
       make: "Valley",
       cloth_color: "Green",
       // images: [
@@ -21,7 +21,7 @@ window.VENUES.push({
         cost: {
           score: 4,
           label: "Average",
-          comment: "$2 per game",
+          comment: "$2 per game, $5 per 3 games",
         },
         table_condition: {
           score: 3,
@@ -33,30 +33,30 @@ window.VENUES.push({
           label: "Average",
         },
         rails: {
-          score: 2,
-          label: "Fair",
-          comment: "Rails bouncy, set up low"
+          score: 3,
+          label: "Average",
+          // comment: "Rails bouncy, set up low"
         },
         lighting: {
-          score: 5,
-          label: "Excellent",
+          score: 3,
+          label: "Average",
         },
         ball_condition: {
           score: 3,
           label: "Average",
         },
         cue_ball: {
-          score: 4,
-          label: "Magnet",
+          score: 3,
+          label: "Heavy, magnet ball functional",
         },
         obstructions: {
-          score: 4,
-          label: "Minor obstructions",
-          comment: "Close to seating when busy",
+          score: 5,
+          label: "No obstructions",
+          // comment: "Close to seating when busy",
         },
         rolloff: {
-          score: 5,
-          label: "Level table",
+          score: 3,
+          label: "Occasional rolloff",
         },
       },
       pockets: {
@@ -64,21 +64,21 @@ window.VENUES.push({
       },
     },
     {
-      name: "Right table",
-      table_size: "8 ft",
+      name: "Back table",
+      table_size: "7 ft",
       make: "Valley",
       cloth_color: "Green",
       images: [
         {
-          src: "./images/bus-stop-2025-03-01.jpg",
-          alt: "Pool table at Bus Stop",
+          src: "./images/cinch-2025-05-01.jpg",
+          alt: "Pool table at the Cinch Saloon",
         },
       ],
       review: {
         cost: {
           score: 4,
           label: "Average",
-          comment: "$2 per game",
+          comment: "$2 per game, $5 per 3 games",
         },
         table_condition: {
           score: 3,
@@ -90,30 +90,30 @@ window.VENUES.push({
           label: "Average",
         },
         rails: {
-          score: 2,
-          label: "Fair",
-          comment: "Rails bouncy, set up low"
+          score: 3,
+          label: "Average",
+          // comment: "Rails bouncy, set up low"
         },
         lighting: {
-          score: 5,
-          label: "Excellent",
+          score: 3,
+          label: "Average",
         },
         ball_condition: {
           score: 3,
           label: "Average",
         },
         cue_ball: {
-          score: 4,
-          label: "Magnet",
+          score: 3,
+          label: "Heavy, magnet ball functional",
         },
         obstructions: {
-          score: 3,
-          label: "Moderate obstructions",
-          comment: "Close to bathroom and seating when busy",
+          score: 4,
+          label: "Minor obstructions",
+          comment: "Close to pinball machine",
         },
         rolloff: {
-          score: 5,
-          label: "Level table",
+          score: 1,
+          label: "Major rolloff",
         },
       },
       pockets: {
